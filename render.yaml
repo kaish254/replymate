@@ -1,34 +1,20 @@
 services:
   - type: web
-    name: crushreply-daraja-api
+    name: crushreply-payment-data
     runtime: node
-    plan: starter
+    plan: free
     rootDir: backend
     buildCommand: npm install --omit=dev
     startCommand: npm start
     healthCheckPath: /api/health
-    disk:
-      name: crushreply-payment-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: NODE_VERSION
         value: 22
       - key: DATABASE_PATH
         value: /var/data/crushreply.sqlite
-      - key: DARAJA_ENV
-        value: sandbox
-      - key: DARAJA_BUSINESS_SHORT_CODE
-        value: '174379'
-      - key: DARAJA_TRANSACTION_TYPE
-        value: CustomerPayBillOnline
-      - key: DARAJA_CONSUMER_KEY
-        sync: false
-      - key: DARAJA_CONSUMER_SECRET
-        sync: false
-      - key: DARAJA_PASSKEY
-        sync: false
-      - key: DARAJA_CALLBACK_TOKEN
+      - key: PUBLIC_API_URL
+        value: https://crushreply-payment-data.onrender.com
+      - key: PAYSTACK_SECRET_KEY
         sync: false
       - key: ALLOWED_ORIGINS
-        sync: false
+        value: https://kaish254.github.io
