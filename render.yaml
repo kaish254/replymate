@@ -11,7 +11,7 @@ services:
       - key: NODE_VERSION
         value: 22
       - key: DATABASE_PATH
-        value: /var/data/crushreply.sqlite
+        value: ./data/crushreply.sqlite
       - key: PUBLIC_API_URL
         value: https://crushreply-payment-data.onrender.com
       - key: PAYSTACK_SECRET_KEY
