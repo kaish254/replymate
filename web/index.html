@@ -1,46 +1,317 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
   <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff3b6b">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="crushreply">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <title>CrushReply — Say It Better</title>
+  <meta name="description" content="CrushReply helps you create better replies for your crush, lover and friends. Download the Android app.">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <title>crushreply</title>
-  <link rel="manifest" href="manifest.json">
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffffff);
+      color: #171717;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 0 45px;
+    }
+
+    .hero img {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,.15);
+      margin-bottom: 25px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #ffe0e9;
+      color: #e51f55;
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #ff2f68;
+    }
+
+    .subtitle {
+      max-width: 650px;
+      margin: auto;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .download {
+      display: inline-block;
+      margin-top: 32px;
+      background: #ff2f68;
+      color: white;
+      text-decoration: none;
+      padding: 17px 32px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 800;
+      box-shadow: 0 12px 25px rgba(255,47,104,.25);
+      transition: .2s;
+    }
+
+    .download:hover {
+      transform: translateY(-3px);
+      background: #e51f55;
+    }
+
+    .small {
+      margin-top: 12px;
+      color: #777;
+      font-size: 13px;
+    }
+
+    .features {
+      padding: 50px 0;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px 20px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    }
+
+    .emoji {
+      font-size: 38px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .premium {
+      margin: 30px 0 60px;
+      background: #171717;
+      color: white;
+      padding: 45px 30px;
+      border-radius: 28px;
+      text-align: center;
+    }
+
+    .premium h2 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .premium p {
+      color: #ddd;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 45px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding-top: 45px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .subtitle {
+        font-size: 17px;
+      }
+    }
+  </style>
 </head>
-<body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
-  <script src="flutter_bootstrap.js" async></script>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="Icon-192.png" alt="CrushReply logo">
+      CrushReply
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+
+      <img src="Icon-512.png" alt="CrushReply C+R logo">
+
+      <div class="badge">🇰🇪 Made for people who want to reply better</div>
+
+      <h1>Say it <span>better.</span><br>Reply smarter.</h1>
+
+      <p class="subtitle">
+        CrushReply helps you create better replies for your crush,
+        lover or friends — whether you want to be romantic, funny,
+        confident or simply know what to say.
+      </p>
+
+      <a class="download"
+         href="https://github.com/kaish254/replymate/releases/download/v1.0.1/app-release.apk">
+        📱 Download CrushReply
+      </a>
+
+      <p class="small">Android APK • Version 1.0.1 • 48.6 MB</p>
+
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+
+      <h2>What can CrushReply do?</h2>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="emoji">❤️</div>
+          <h3>Romantic</h3>
+          <p>Find sweet replies when you want to make someone feel special.</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">😂</div>
+          <h3>Funny</h3>
+          <p>Turn an ordinary conversation into something fun.</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">🔥</div>
+          <h3>Flirty</h3>
+          <p>Get confident replies when the conversation gets interesting.</p>
+        </div>
+
+        <div class="card">
+          <div class="emoji">💬</div>
+          <h3>Friends</h3>
+          <p>Find better ways to respond to the people around you.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="premium">
+
+      <h2>💎 Go Premium</h2>
+
+      <p>
+        Unlock more ways to create amazing replies and get the most
+        out of CrushReply.
+      </p>
+
+      <div class="price">KSh 100 / month</div>
+
+      <a class="download"
+         href="https://github.com/kaish254/replymate/releases/download/v1.0.1/app-release.apk">
+        Get CrushReply
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 CrushReply • Built for better conversations 🇰🇪
+  </div>
+</footer>
+
 </body>
 </html>
