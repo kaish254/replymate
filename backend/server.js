@@ -196,7 +196,7 @@ app.post('/api/payments/stk', async (request, response) => {
       );
 
       return response.status(502).json({
-        error: 'M-PESA payment could not be started. Please try again.',
+        error: `Paystack: ${result.message ?? `HTTP ${paystackResponse.status}`}`,
       });
     }
 
